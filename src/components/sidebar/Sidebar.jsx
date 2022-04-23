@@ -1,16 +1,24 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { MdDashboard,MdSell,MdLogout,MdPeopleAlt,MdShoppingCart,MdProductionQuantityLimits,MdSettings } from 'react-icons/md';
-import { GrOrganization} from 'react-icons/gr';
-import { BsLayoutThreeColumns} from 'react-icons/bs';
-import { BiPurchaseTag} from 'react-icons/bi';
-import './sidebar.scss'
-import { useNavigate } from 'react-router-dom';
+import {MdLogout} from 'react-icons/md';
 
-const Sidebar = () => {
+import './sidebar.scss'
+import { Link, useNavigate } from 'react-router-dom';
+import category from '../../utils/category/category';
+
+const Sidebar = ({index}) => {
 
   const [user,setUser]=useState("")
   const navigate=useNavigate()
+  const [selected,setSelected]=useState(index)
+  
+  console.log(user)
+
+  const func=()=>{
+    setSelected(index)
+    
+  }
+
 
   useEffect( ()=>{
    return async ()=>{
@@ -28,7 +36,8 @@ const Sidebar = () => {
       console.log(err.response)
     }
    }
-  },[])
+  },)
+  console.log("hello")
 
   const logout=()=>{
     localStorage.removeItem('token');
@@ -46,43 +55,20 @@ const Sidebar = () => {
       <hr />
       <div className="sidebar_category">
 
-        <div className="category">
-          <MdDashboard className='icons'/>
-          <p>DASHBOARD</p>
-        </div>
-        <div className="category">
-          <BiPurchaseTag className='icons'/>
-          <p>PURCHASE</p>
-        </div>
-        <div className="category">
-          <MdSell className='icons'/>
-          <p>SELL</p>
-        </div>
-        <div className="category">
-          <MdPeopleAlt className='icons'/>
-          <p>CUSTOMER</p>
-        </div>
-        <div className="category">
-          <GrOrganization className='icons'/>
-          <p>SUPPLIER</p>
-        </div>
-        <div className="category">
-          <MdShoppingCart className='icons'/>
-          <p>ORDERS</p>
-        </div>
+       {
+         category.map((item,index)=>{
+           return (
+             <Link to={item.link} style={{textDecoration:"none"}}><div className={selected==index ? "category active":"category"} key={index}
+             onClick={func}>
+               {item.icons}
+               
+               <span>{item.heading}</span>
+             </div>
+             </Link>
+           )
+         })
+       }
         
-        <div className="category">
-          <BsLayoutThreeColumns className='icons'/>
-          <p>ATTRIBUTES</p>
-        </div>
-        <div className="category">
-          <MdProductionQuantityLimits className='icons'/>
-          <p>PRODUCT</p>
-        </div>
-        <div className="category">
-          <MdSettings className='icons'/>
-          <p>SETTING</p>
-        </div>
         <div className="category">
           <MdLogout className='icons'/>
           <button onClick={logout} className="logout">LOGOUT</button>

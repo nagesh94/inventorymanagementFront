@@ -2,9 +2,10 @@ import React, { useRef, useState } from 'react'
 import './signup.scss'
 import Mainfile from "../../utils/particle/Mainfile";
 import { useForm } from 'react-hook-form';
-import { Country, State, City } from 'country-state-city';
+// import { Country, State, City } from 'country-state-city';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Signup = () => {
 
@@ -37,7 +38,10 @@ const Signup = () => {
   return (
     <>
       <Mainfile />
-      <div className="signup">
+      <motion.div className="signup"
+       initial={{height:0}}
+       animate={{height:"100%"}}
+       exit={{height:window.innerHeight}}>
         <div className="signup_here">
 
           <p className='signup_heading'>signup herew</p>
@@ -99,7 +103,7 @@ const Signup = () => {
 
 
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

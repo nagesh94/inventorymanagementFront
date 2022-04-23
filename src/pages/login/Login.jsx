@@ -3,7 +3,7 @@
 import './login.scss'
 import Mainfile from "../../utils/particle/Mainfile";
 import { useState } from 'react';
-
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ const Login = () => {
       localStorage.setItem("token",response.data.token)
       navigate('/home')
     } catch (err) {
-      console.log(err)
+      console.log(err.response)
     }
   }
 
@@ -36,7 +36,10 @@ const Login = () => {
     <>
 
       <Mainfile />
-      <div className="login">
+      <motion.div className="login"
+       initial={{height:0}}
+       animate={{height:"100%"}}
+       exit={{height:window.innerHeight}}>
 
         <div className="login_input">
           <p className="login_heading">WELCOME TO INVENTOSHOP</p>
@@ -53,7 +56,8 @@ const Login = () => {
             <button className='button' onClick={loginUser}>LOGIN</button>
           </div>
           <div className="login_forgetPass">
-            <p > forget password ?</p>
+            <Link to='/forget'><p > forget password ?</p></Link>
+            
           </div>
 
 
@@ -64,7 +68,7 @@ const Login = () => {
             
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
