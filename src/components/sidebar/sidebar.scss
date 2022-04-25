@@ -35,7 +35,8 @@
         // padding: 1rem;
         gap: 2rem;
         margin-top: 3rem;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
 
         .category{
             display: flex;

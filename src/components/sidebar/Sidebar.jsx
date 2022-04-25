@@ -5,14 +5,18 @@ import {MdLogout} from 'react-icons/md';
 import './sidebar.scss'
 import { Link, useNavigate } from 'react-router-dom';
 import category from '../../utils/category/category';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchsidebar } from '../../common/redux/supplierSlice';
 
 const Sidebar = ({index}) => {
 
   const [user,setUser]=useState("")
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const [selected,setSelected]=useState(index)
+  const val=useSelector(state=>state.supplier.sidebarName)
   
-  console.log(user)
+
 
   const func=()=>{
     setSelected(index)
@@ -21,23 +25,16 @@ const Sidebar = ({index}) => {
 
 
   useEffect( ()=>{
-   return async ()=>{
-    try {
-      const url='http://localhost:8000/api/v1/users/as4df4sad5f45asd4f/'
-      const token=localStorage.getItem('token')
-      const response=await axios.get(url,{
-        headers: {
-          'Authorization': `Bearer ${token}` 
-        }
-      })
-    
-      setUser(response.data.data.firstname)
-    } catch (err) {
-      console.log(err.response)
-    }
-   }
-  },)
-  console.log("hello")
+   dispatch(fetchsidebar())
+   setUser(val)
+  },[dispatch])
+
+  useEffect( ()=>{
+   dispatch(fetchsidebar())
+   setUser(val)
+  },[val])
+ 
+ 
 
   const logout=()=>{
     localStorage.removeItem('token');
