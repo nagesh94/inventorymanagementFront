@@ -1,0 +1,27 @@
+.customer{
+    display: flex;
+
+    
+}
+.customer_main{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:3rem ;
+    .customer_heading{
+        font-size: 70px;
+        font-weight: bold;
+        margin-bottom: 1%;
+        margin-top: 2%;
+        color: var(--color-subtext);
+    }
+    .customer_img{
+        
+    //    position: fixed;
+       top: 0;
+       left: 20%;
+        
+    }
+}

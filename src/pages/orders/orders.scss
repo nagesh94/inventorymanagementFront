@@ -1,0 +1,44 @@
+.orders{
+    display: flex;
+}
+.ordersMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    .ordersImg{
+        margin-left: 35%;
+    }
+}
+.ordersFilter{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 2%;
+    color: var(--color-blog);
+}
+select{
+    width: 6vw;
+}
+.ordersHeading{
+    margin-top: 3%;
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--color-subtext);
+    
+}
+
+.modal{
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+      
+    
+}
+.details{
+    width: 6vw;
+    height: 2vw;
+    margin-left: 4%;
+}

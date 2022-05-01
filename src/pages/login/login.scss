@@ -1,0 +1,77 @@
+.login {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 10px;
+    color: white;
+
+    .login_input {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+
+        color:var(--color-subtext);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+
+        .login_input_input {
+            width: 3vw;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+        };
+        .login_forgetPass{
+            font-size: 30px;
+        }
+        .login_forgetPass:hover{
+            background-color: rgb(250, 248, 248);
+            font-weight: bold;
+            border: 2px solid rgb(22, 9, 7);
+          }
+        .login_heading{
+            font-size: 50px;
+            font-weight: bolder;
+            margin-bottom: 50px;
+        };
+        .login_input_input>input{
+            padding:10px;
+            border:none;
+            width: 20vw;
+        };
+        .login_signup{
+            display: flex;
+            align-items: center;
+            gap:8px;
+            margin-top: 2rem;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .login_button{
+            width: 5vw;
+            border: 1px solid var(--color-blog);
+            margin-left: 8%;
+            font-size: 25px;
+            height: 4vh;
+        }
+        .button{
+            width: 6vw;
+            border: 1px solid var(--color-blog);
+            font-size: 25px;
+            height: 4vh;
+        }
+        .button:hover{
+            background-color: var(--color-text);
+            font-weight: bolder;
+            border: 2px solid rgb(22, 9, 7);
+          }
+          
+    }
+}
+

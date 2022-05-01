@@ -1,0 +1,53 @@
+.grid{
+    
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 16px;
+}
+
+.grid_div{
+    display: flex;
+    gap: 10rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+.input_feild{
+    align-items: center;
+    justify-content: center;
+    margin-left: 3rem;
+    margin-top: 16px;
+}
+.add_item{
+    
+    //margin-left:5%;
+
+   // width: 3vw;
+
+   // height: 2vw;
+
+    font-size: 20px;
+
+    font-weight: bolder;
+
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+   
+ 
+}
+button:hover{
+
+    background-color: var(--color-text);
+
+    font-weight: bold;
+
+    border: 2px solid rgb(22, 9, 7);
+
+  }
+.delete_item{
+    height: 2rem;
+    width: 3rem;
+    margin-top: 16px;
+}

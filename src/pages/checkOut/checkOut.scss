@@ -1,0 +1,37 @@
+.checkOut{
+   display: flex;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    .checkOut{
+        font-size: 30px;
+        color: var( --color-bg);
+        font-weight: bold; 
+        margin-top: 2%;
+    }
+   
+}
+.customerForm>input{
+    width: 10vw;
+    height: 4vh;
+    // padding: 1%;
+    margin-bottom: 3%;
+    margin-right: 1%;
+    margin-left: 3%;
+    display:inline-block;
+    gap: 2rem;
+}
+.button_pay{
+   width: 4vw;
+   height: 5vh;
+   margin-left: 45%;
+}
+.button_cancel{
+    width: 12vw;
+   height: 6vh;
+   margin-left: 45%;
+}
