@@ -40,8 +40,9 @@ const Orders = () => {
   const [select, setSelect] = useState(false)
   const [custom, setCustom] = useState('')
   const [count, setCount] = useState(0)
-  const customerOrder = useSelector(state => state.order.dataCustomer)
+  let customerOrder = useSelector(state => state.order.dataCustomer)
   let userOrder = useSelector(state => state.order.dataUser)
+  const proxyUser=[...userOrder]
   const [modal,setModal]=useState(false)
   const [productDetails,setProductDetails]=useState([])
 
@@ -49,11 +50,8 @@ const Orders = () => {
  {
    userOrder=customerOrder
  }
-
   const allCustomers = useSelector(state => state.customer.data)
-  console.log(customerOrder)
-  console.log(userOrder)
-  console.log(allCustomers)
+
 
   useEffect(() => {
     dispatch(fetchOrderByCustomer(custom))
@@ -61,10 +59,21 @@ const Orders = () => {
     dispatch(fetchCustomer())
   }, [dispatch, count])
 
+  console.log(userOrder)
   const selectHandler = (event) => {
-    event.target.value == 'user' ? setSelect(false) : setSelect(true)
+    
+  
+   
+    if( event.target.value == 'User'){
+      setSelect(false)
+      setCustom('')
+      setCount(count+1)
+    }else{
+      setSelect(true)
+    }
   }
-
+   
+  console.log(select)
   const customerHandler = (id) => {
     setCustom(id)
     setCount(count + 1)
@@ -74,6 +83,8 @@ const Orders = () => {
     setProductDetails(data)
     setModal(true)
   }
+
+  console.log(modal)
   return (
     <div className='orders'>
       <div className='sidebar'>
@@ -83,15 +94,15 @@ const Orders = () => {
         <div className="ordersMain">
           <div className="ordersImg">
 
-            <img  style={{width:"40%", height:"40%"}} src="https://th.bing.com/th/id/R.67d07b6a08b3d3ef7d7552ede0d9ab8c?rik=r%2frwGtY1i%2be5CA&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f3%2fOrder-Now-PNG-Free-Download.png&ehk=XjFa2H09IUD4Dc86b2AdmCnTjeP3CuvrwckqMC6%2fxLI%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="allorder" />
+            <img  style={{width:"40%", height:"40%"}} src="https://images.unsplash.com/photo-1613652038578-a9a988b54a60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="allorder" />
           </div>
 
           <div className="ordersHeading">
-            <h1>All Orders Here !</h1>
+            <p>ORDERS LIST</p>
           </div>
 
           <div className="ordersFilter">
-            <p>Sort by</p>
+            <p>SORT BY</p>
             <select name="filter" onChange={selectHandler}>
               <option  >User</option>
               <option >Customer</option>
@@ -106,6 +117,7 @@ const Orders = () => {
               </select>
             }
           </div>
+          
 
           <div className="orderTable">
           <TableContainer component={Paper}>
@@ -143,6 +155,7 @@ const Orders = () => {
 
           {
             modal && <div className='modal' >
+                <div >
                <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
@@ -173,7 +186,8 @@ const Orders = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-            <button onClick={()=>setModal(false)}>X</button>
+            <button className='button' onClick={()=>setModal(false)}>X</button>
+            </div>
             </div>
           }
         </div>

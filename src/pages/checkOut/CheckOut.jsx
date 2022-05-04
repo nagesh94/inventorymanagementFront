@@ -10,6 +10,7 @@ const CheckOut = ({ close, totalAmount, data }) => {
 
     const { formState: { errors }, register, handleSubmit } = useForm();
     const ref = useRef()
+    const [error,setError]=useState('')
 
     const [customer, setCustomer] = useState({
         name: "",
@@ -45,11 +46,12 @@ const CheckOut = ({ close, totalAmount, data }) => {
             const customerId = response.data.data._id
             addOrder(customerId)
 
-            
+            setError('')
 
 
-        } catch (error) {
-            console.log(error.response)
+        } catch (err) {
+            setError(err.response.data.message)
+            console.log(err.response)
         }
 
     }
@@ -66,6 +68,7 @@ const CheckOut = ({ close, totalAmount, data }) => {
     
             })
             console.log(response1)
+            
             data.forEach(async (item)=>{
            
                 
@@ -82,14 +85,17 @@ const CheckOut = ({ close, totalAmount, data }) => {
                       })
                       console.log(response2)
                      
-                  } catch (error) {
-                      console.log(error.response)
+                  } catch (err) {
+                      console.log(err)
+                    setError(err.response.data.message)
+                      
                   }
                  
              })
            
-        } catch (error) {
-            console.log(error.response)
+        } catch (err) {
+            console.log(err)
+            setError(err.response.data.message)
         }
     }
 
@@ -105,16 +111,17 @@ const CheckOut = ({ close, totalAmount, data }) => {
 
                 <div className="main">
                     <div className="checkOut">
-                        <h1>Customer Details</h1>
+                        <p>Customer Details</p>
                     </div>
+                    {error && <p style={{color:"red"}}>{error}</p>}
                     <div className="customerForm">
                         <input type="text" placeholder='Enter your name...' name='name' required onChange={changeHandler} />
                         <input type="number" placeholder='Enter your contact number' name='phone' required onChange={changeHandler} />
                         <input type="email" placeholder='Enter your email address' name='email' required onChange={changeHandler} />
-                        <button className='button_pay' onClick={submit} >Pay</button>
+                        <button className='button' onClick={submit} >Pay</button>
                        
+                    <button className='button' onClick={() => close(false)}>Order Cancel</button>
                     </div>
-                    <button className='button_cancel' onClick={() => close(false)}>Order Cancel</button>
 
                 </div>
             </div>

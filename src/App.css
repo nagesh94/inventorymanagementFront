@@ -5,10 +5,40 @@
 
 .mainContainer{
   flex:6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button{
+  padding: 10px;
+  border: none;
+  box-sizing: border-box;
+  
+ 
+  font-weight: bolder;
+  font-size: 1.2rem;
+
+  
+}
+.button:hover{
+  cursor: pointer;
+  box-shadow: 2px -2px 79px -6px rgba(0,0,0,0.72) inset;
+-webkit-box-shadow: 2px -2px 79px -6px rgba(0,0,0,0.72) inset;
+-moz-box-shadow: 2px -2px 79px -6px rgba(0,0,0,0.72) inset;
 }
 input{
-  font-size: 20px;
+  font-size: 1.5rem;
+  border-radius: none;
+  padding: 15px;
+  font-family: 'Libre Bodoni', serif;
 }
+input:focus{
+  box-shadow: 10px 10px 74px 7px rgba(0,0,0,0.8) inset;
+-webkit-box-shadow: 10px 10px 74px 7px rgba(0,0,0,0.8) inset;
+-moz-box-shadow: 10px 10px 74px 7px rgba(0,0,0,0.8) inset;
+}
+
 select{
-  font-size: 20px;
+  padding: 10px;
+  font-size: 1.5rem;
 }

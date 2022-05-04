@@ -11,6 +11,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CheckOut from '../checkOut/CheckOut';
+import { deleteCart } from '../../common/redux/sellSlice';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,11 +37,24 @@ const Sell = () => {
 
   const dispatch=useDispatch()
   const val=useSelector(state=>state.sell.data)
+  const [index,setIndex]=useState()
+  const [count,setCount]=useState(0)
+  // const ind=useSelector(state=>state.sell.index)
+console.log(val)
  
+  
   const [modal,setModal]=useState(false)
 
+  useEffect(()=>{
+  },[count])
+  
   const modalHandler=(data)=>{
     setModal(data)
+  }
+  const removeItem=(index)=>{
+    setIndex(index)
+    dispatch(deleteCart(index))
+    setCount(count+1)
   }
 
   const totalAmount=val.reduce((current,next)=>{
@@ -64,23 +78,24 @@ const Sell = () => {
           <img style={{width:"200%", height:"200%"}} src="https://tse1.mm.bing.net/th?id=OIP.VFlJMEpVTkQGAB5nUnZqUAHaFB&pid=Api&P=0&w=238&h=161" alt="sell" />
         </div>
         <div className="sellHeading">
-          <p>CheckOut Session</p>
+          <p>CART</p>
         </div>
         <div className="sellCart">
         <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="simple table">
+              <Table  aria-label="simple table">
                 <TableHead>
                   <TableRow className='bold'>
                     
                     <StyledTableCell align="center">Name</StyledTableCell>
                     <StyledTableCell align="center">Price</StyledTableCell>
-                    <StyledTableCell align="center">Total Quantity</StyledTableCell>
+                    
                     <StyledTableCell align="center">Category</StyledTableCell>
                     <StyledTableCell align="center">Supplier</StyledTableCell>
                     <StyledTableCell align="center">Brand</StyledTableCell>
                     <StyledTableCell align="center">Color</StyledTableCell>
                     <StyledTableCell align="center">Size</StyledTableCell>
-                    <StyledTableCell align="center">Selected Quantity</StyledTableCell>
+                    <StyledTableCell align="center">Quantity</StyledTableCell>
+                    <StyledTableCell align="center">remove</StyledTableCell>
                     
                   </TableRow>
                 </TableHead>
@@ -92,13 +107,14 @@ const Sell = () => {
                      
                       <StyledTableCell align="center">{row.name}</StyledTableCell>
                       <StyledTableCell align="center">{row.price}</StyledTableCell>
-                      <StyledTableCell align="center">{row.quantity}</StyledTableCell>
+                      
                       <StyledTableCell align="center">{row.category}</StyledTableCell>
                       <StyledTableCell align="center">{row.supplier}</StyledTableCell>
                       <StyledTableCell align="center">{row.brand}</StyledTableCell>
                       <StyledTableCell align="center">{row.color}</StyledTableCell>
                       <StyledTableCell align="center">{row.size}</StyledTableCell>
                       <StyledTableCell align="center">{row.quant}</StyledTableCell>
+                      <StyledTableCell align="center"><button className='button' onClick={()=>removeItem(index)}>remove</button></StyledTableCell>
 
                       
                       
@@ -114,7 +130,7 @@ const Sell = () => {
         </div>
 
         <div className="checkOut">
-          <button className='button' onClick={()=>setModal(true)}>Checkout</button>
+         { totalAmount>0 && <button className='button' onClick={()=>setModal(true)}>Checkout</button>}
         </div>
         
         {

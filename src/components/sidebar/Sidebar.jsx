@@ -45,7 +45,7 @@ const Sidebar = ({index}) => {
     <div className='sidebar'>
 
       <div className='sidebar_name'>
-        <p className='sidebar_name_heading'>WELCOME</p>
+        <p className='sidebar_name_heading'>WELCOME </p>
         <p className='sidebar_name_user'>{user}</p>
       </div>
 
@@ -55,9 +55,9 @@ const Sidebar = ({index}) => {
        {
          category.map((item,index)=>{
            return (
-             <Link to={item.link} style={{textDecoration:"none"}}><div className={selected==index ? "category active":"category"} key={index}
+             <Link to={item.link} style={{textDecoration:"none",color:"black"}}><div className={selected==index ? "category active":"category"} key={index}
              onClick={func}>
-               {item.icons}
+               {item.icons }
                
                <span>{item.heading}</span>
              </div>
@@ -68,7 +68,7 @@ const Sidebar = ({index}) => {
         
         <div className="category">
           <MdLogout className='icons'/>
-          <button onClick={logout} className="logout">LOGOUT</button>
+          <button onClick={logout} className="button">LOGOUT</button>
         </div>
 
       </div>

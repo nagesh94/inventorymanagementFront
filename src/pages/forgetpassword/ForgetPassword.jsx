@@ -1,4 +1,4 @@
-import React, { useRef} from 'react'
+import React, { useRef, useState } from 'react'
 import './forgetPassword.scss'
 import Mainfile from '../../utils/particle/Mainfile'
 import { useForm } from 'react-hook-form';
@@ -11,6 +11,7 @@ const ForgetPassword = () => {
     const { formState: { errors }, register, handleSubmit } = useForm();
     const ref=useRef()
     const navigate=useNavigate()
+    const [error,setError]=useState('')
     
     const submit = async (data) => {
         
@@ -18,9 +19,10 @@ const ForgetPassword = () => {
           const url = 'http://localhost:8000/api/v1/users/forgetpassword/'
           const response = await axios.post(url, data)
           console.log(response)
-          navigate('/')
+          navigate('/resetpass')
           
         } catch (err) {
+          setError(err.response.data.message)
           console.log(err.response)
         }
       }
@@ -33,10 +35,11 @@ const ForgetPassword = () => {
      exit={{height:window.innerHeight}}>
         <form className='forget_box' ref={ref} onSubmit={handleSubmit(submit)}>
             <h1>Please provide the register email address</h1>
+            {error && <p style={{color:"red"}}>{error}</p>}
             <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/ })} placeholder='Enter your register email address'/>
             {errors.email?.type === 'required' && "email is required"}
             {errors.email?.type === 'pattern' && "not valid email address"}
-            <button>Send Link</button>
+            <button className='button'>Send Link</button>
         </form>
     </motion.div>
       </>

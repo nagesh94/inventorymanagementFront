@@ -10,23 +10,20 @@ import Suppliers from '../suppliers/Suppliers'
 const Home = () => {
   return (
     <div className='home'>
-   
       <div className='sidebar'>
-      <Sidebar index={0}/>
-       
-        
+        <Sidebar />
       </div>
       <div className="mainContainer">
-        <div className="navbar">
-         <Navbar/>
-        </div>
+
         <div className="main">
-        
+          
+          <Dashboard />
         </div>
       </div>
-      </div>
-      
-  
+
+    </div>
+
+
   )
 }
 

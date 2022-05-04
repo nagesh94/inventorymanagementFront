@@ -36,9 +36,11 @@
             border: 2px solid rgb(22, 9, 7);
           }
         .login_heading{
-            font-size: 50px;
-            font-weight: bolder;
-            margin-bottom: 50px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: white;
+            margin-top: 2rem;
+            text-shadow: 1px 1px 5px;
         };
         .login_input_input>input{
             padding:10px;
@@ -52,25 +54,10 @@
             margin-top: 2rem;
             font-size: 25px;
             font-weight: bold;
+            color: aliceblue;
         }
-        .login_button{
-            width: 5vw;
-            border: 1px solid var(--color-blog);
-            margin-left: 8%;
-            font-size: 25px;
-            height: 4vh;
-        }
-        .button{
-            width: 6vw;
-            border: 1px solid var(--color-blog);
-            font-size: 25px;
-            height: 4vh;
-        }
-        .button:hover{
-            background-color: var(--color-text);
-            font-weight: bolder;
-            border: 2px solid rgb(22, 9, 7);
-          }
+      
+   
           
     }
 }

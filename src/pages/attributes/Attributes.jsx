@@ -43,22 +43,22 @@ const Attributes = () => {
       </div>
       <div className="mainContainer">
 
-    
+        <div className="attributeMain">
           
-
+          <p className='attributeHeading'>ATTRIBUTES</p>
           
-            <div className='attribute_card'>
-           <AttributeCard attribute="color" list={color} val='colors' />
-           <AttributeCard attribute="name" list={category} val='categories' />
-           <AttributeCard attribute="size" list={size} val='sizes' />
-           <AttributeCard attribute="name" list={brand} val='brands' />
+          <Grid container   className='gridContainer' >
             
-          <div/>
+           <AttributeCard attribute="color" list={color} val='colors' />
+           <AttributeCard attribute="category" list={category} val='categories' />
+           <AttributeCard attribute="size" list={size} val='sizes' />
+           <AttributeCard attribute="brand" list={brand} val='brands' />
+            
+          </Grid>
         </div>
       </div>
     </div>
-    
-  )}
-
+  )
+}
 
 export default Attributes

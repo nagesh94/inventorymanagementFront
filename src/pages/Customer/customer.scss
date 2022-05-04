@@ -11,11 +11,11 @@
     justify-content: center;
     gap:3rem ;
     .customer_heading{
-        font-size: 70px;
-        font-weight: bold;
-        margin-bottom: 1%;
-        margin-top: 2%;
-        color: var(--color-subtext);
+        font-family: 'Bebas Neue', cursive;
+        font-size: 3rem;
+        color: var(--color-blog);
+        margin-top: 2rem;
+        text-shadow: 1px 1px 5px;
     }
     .customer_img{
         
@@ -24,4 +24,8 @@
        left: 20%;
         
     }
+}
+
+.customer_table{
+    box-shadow: var(--box-shadow);
 }

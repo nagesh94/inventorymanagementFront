@@ -16,17 +16,8 @@
     --color-blog: #042c54;
     --color-text: #81AFDD;
     --color-subtext: #FF8A71;
+    --box-shadow:-2px -1px 34px 20px rgba(152,199,224,0.64);
+    /* -webkit-box-shadow: -2px -1px 34px 20px rgba(152,199,224,0.64);
+    -moz-box-shadow: -2px -1px 34px 20px rgba(152,199,224,0.64); */
   }
 
-.button{
-    padding: 10px;
-    border: none;
-    width:150px;
-    font-size: large;
-    font-weight: bolder;
-
-    
-}
-.button:hover{
-    cursor: pointer;
-}

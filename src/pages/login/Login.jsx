@@ -10,6 +10,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 const Login = () => {
 
   const navigate=useNavigate()
+  const [error,setError]=useState('')
   const [sign, setSign] = useState({
     email: "",
     password: ""
@@ -26,7 +27,8 @@ const Login = () => {
       localStorage.setItem("token",response.data.token)
       navigate('/home')
     } catch (err) {
-      console.log(err.response)
+      setError(err.response.data.message)
+      console.log(error)
     }
   }
 
@@ -43,8 +45,8 @@ const Login = () => {
 
         <div className="login_input">
           <p className="login_heading">WELCOME TO INVENTOSHOP</p>
+            {error && <h1 style={{color:"red"}}>{error}</h1>}
           <div className="login_input_input">
-
             <input type="email" name="email" placeholder='Email' value={sign.email} onChange={handleChange} />
           </div>
           <div className="login_input_input">
@@ -53,7 +55,7 @@ const Login = () => {
 
           </div>
           <div  >
-            <button className='login_button' onClick={loginUser}>LOGIN</button>
+            <button className='button' onClick={loginUser}>LOGIN</button>
           </div>
           <div className="login_forgetPass">
             <Link to='/forget'><p> Forget Password ?</p></Link>

@@ -67,16 +67,16 @@ const AttributeCard = ({ attribute, list,val }) => {
     return (
         
 
-        <Grid item md={3} className='grid'>
+        <Grid item md={5} sm={11} className='grid'>
             <div className='add_item'>
-                <input className='input_feild' type="text" placeholder={`add ${attribute} `} name={`${attribute}`} onChange={handleChange} />
+                <input  type="text" placeholder={`add ${attribute} `} name={`${attribute}`} onChange={handleChange} />
                 <button className='button' onClick={addItem} >ADD</button>
             </div>
             
             {list.map((item, index) => {
                 return <div key={index} className='grid_div' >
                     <p>{item[attribute]}</p>
-                    <button className='delete_item' onClick={() => deleteitem(item._id)} >Delete</button>
+                    <button className='button' onClick={() => deleteitem(item._id)} >Delete</button>
                 </div>
                  })}
                

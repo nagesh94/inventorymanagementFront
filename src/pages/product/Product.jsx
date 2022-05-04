@@ -38,20 +38,19 @@ const Product = () => {
 
   const dispatch = useDispatch()
   let val = useSelector(state => state.product.allData)
-  const filterVal=useSelector(state => state.product.data)
-  const cartData=useSelector(state=>state.sell.data)
-  if(filterVal.length>0)
-  {
-    val=filterVal
+  const filterVal = useSelector(state => state.product.data)
+  const cartData = useSelector(state => state.sell.data)
+  if (filterVal.length > 0) {
+    val = filterVal
   }
-  const [count,setCount]=useState(0)
+  const [count, setCount] = useState(0)
   const [filterOption, setFilterOption] = useState('')
-  const [filter,setFilter]=useState('')
-  const [sort,setSort]=useState('')
-  
-  const options=['_id','name','price','quantity','category','supplier','brand','color','size']
+  const [filter, setFilter] = useState('')
+  const [sort, setSort] = useState('')
 
-  const [cart,setCart]=useState(cartData)
+  const options = ['_id', 'name', 'price', 'quantity', 'category', 'supplier', 'brand', 'color', 'size']
+
+  const [cart, setCart] = useState(cartData)
 
 
 
@@ -60,33 +59,33 @@ const Product = () => {
   }, [])
 
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(cartAdd(cart))
-  },[cart])
+  }, [cart])
 
   const changeFilter = (event) => {
     setFilterOption(event.target.value)
   }
-  
-  const changeHandler=(event)=>{
+
+  const changeHandler = (event) => {
     setFilter(event.target.value)
-    setCount(count+1)
+    setCount(count + 1)
   }
-  const sortHandler=(event)=>{
+  const sortHandler = (event) => {
     setSort(event.target.value)
   }
-  const search=()=>{
-    dispatch(fetchProduct({filterOption,filter,sort}))
+  const search = () => {
+    dispatch(fetchProduct({ filterOption, filter, sort }))
   }
 
-const addToCart=(data)=>{
-  data={...data,quant:count}
-  data={...data,amount:(data.quant*1)*data.price}
-  
-  setCart([...cart,data])
-  
-}
-console.log(cart)
+  const addToCart = (data) => {
+    data = { ...data, quant: count }
+    data = { ...data, amount: (data.quant * 1) * data.price }
+
+    setCart([...cart, data])
+
+  }
+  console.log(cart)
 
 
   return (
@@ -97,7 +96,7 @@ console.log(cart)
       <div className="mainContainer">
         <div className="productMain">
           <div className="productHeading">
-            <p>All Products !!!</p>
+            <p>PRODUCT LIST</p>
           </div>
 
           <div className="productFilter">
@@ -105,30 +104,29 @@ console.log(cart)
 
             <select name="filter" onChange={changeFilter} >
               <option value="">filter</option>
-              
-               { options.map((item, index) => {
-                  return <option key={index} >{item}</option>
-                })}
-              
+
+              {options.map((item, index) => {
+                return <option key={index} >{item}</option>
+              })}
+
             </select>
-            <button className='button_search' onClick={search}>Search</button>
 
 
 
           </div>
           <div className="productSort">
-            <label htmlFor="price">Sort By</label>
-            {/* <input type="radio" name='price' value='price' onClick={sortHandler}  />
-            <input type="radio" name='price' value='-price' onClick={sortHandler} /> */}
-            <input type="radio" name="price" value="price"   onClick={sortHandler}/>
-            <label htmlFor="price">Low to High</label>
-            <input type="radio" name="price" value="-price "  onClick={sortHandler}/>
-            <label htmlFor="price">High to Low</label><br></br>
+            <label htmlFor="price">Sort By price : </label>
+            
+            <input type="radio" name="price" value="price" defaultChecked onClick={sortHandler} />
+            <label htmlFor="price">Low</label>
+            <input type="radio" name="price" value="-price " onClick={sortHandler} />
+            <label htmlFor="price">High</label><br></br>
 
           </div>
+            <button className='button' onClick={search}>Search</button>
           <div className="productTable">
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="simple table">
+              <Table  aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell align="center">id</StyledTableCell>
@@ -141,7 +139,7 @@ console.log(cart)
                     <StyledTableCell align="center">color</StyledTableCell>
                     <StyledTableCell align="center">size</StyledTableCell>
                     <StyledTableCell align="center">selected quant</StyledTableCell>
-                    
+
 
                     <StyledTableCell align="center">Add to Cart</StyledTableCell>
                   </TableRow>
@@ -162,12 +160,12 @@ console.log(cart)
                       <StyledTableCell align="center">{row.brand}</StyledTableCell>
                       <StyledTableCell align="center">{row.color}</StyledTableCell>
                       <StyledTableCell align="center">{row.size}</StyledTableCell>
-                      <StyledTableCell align="center"><input type="number" min='1' defaultValue='1' max={row.quantity}  onChange={(event)=>setCount(event.target.value)} /></StyledTableCell>
-                      
-                      
-                     
-                      
-                      <StyledTableCell align="center"><button className='button_add' onClick={()=>addToCart(row)} >Add</button></StyledTableCell>
+                      <StyledTableCell align="center"><input type="number" min='1'  defaultValue='1' max={row.quantity} onChange={(event) => setCount(event.target.value)} /></StyledTableCell>
+
+
+
+
+                      <StyledTableCell align="center"><button className='button' onClick={() => addToCart(row)} >Add</button></StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>

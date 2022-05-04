@@ -1,0 +1,23 @@
+.dashboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    .purchaseAmt,.sellAmt
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem;
+        box-shadow: var(--box-shadow);
+        
+        h2{
+            color:red
+            
+        }
+        h1{
+            color: blue;
+        }
+    }
+}

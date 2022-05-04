@@ -6,7 +6,7 @@ import { BiPurchaseTag} from 'react-icons/bi';
 
 const category=[{icons:<MdDashboard/>,heading:"DASHBOARD",link:"/home"},
 {icons:<BiPurchaseTag />,heading:"PURCHASE",link:"/purchase"},
-{icons:<MdSell />,heading:"SELL",link:"/sell"},
+{icons:<MdSell />,heading:"CART",link:"/sell"},
 {icons:<MdPeopleAlt />,heading:"CUSTOMER",link:"/customer"},
 {icons:<GrOrganization />,heading:"SUPPLIERS",link:"/supplier"},
 {icons:<MdShoppingCart />,heading:"ORDERS",link:"/order"},

@@ -13,6 +13,7 @@ const Signup = () => {
   const [DOB, setDOB] = useState()
   const ref = useRef()
   const navigate=useNavigate()
+  const [error,setError]=useState('')
 
 
   const submit = async (data) => {
@@ -24,6 +25,7 @@ const Signup = () => {
       navigate('/')
       
     } catch (err) {
+      setError(err.response.data.message)
       console.log(err.response)
     }
   }
@@ -31,54 +33,75 @@ const Signup = () => {
     setDOB(event.target.value)
   }
   console.log(DOB)
+  // const country=Country.getAllCountries()
+  // const state=State.get
+  // const city=City.getCitiesOfState()
 
   return (
     <>
-      <Mainfile />
+      <Mainfile style={{height:"100vh"}} />
       <motion.div className="signup"
        initial={{height:0}}
        animate={{height:"100%"}}
        exit={{height:window.innerHeight}}>
         <div className="signup_here">
 
-          <p className='signup_heading'>Sign Up for Free</p>
+          <p className='signup_heading'>SIGNUP HERE</p>
+          {error && <p style={{color:"red"}}>{error}</p>}
           <form ref={ref} onSubmit={handleSubmit(submit)} className="signup_form">
-            <input {...register("firstname", { required: true, maxLength: 20 })} placeholder="Enter your first name..."/>
+            <input {...register("firstname", { required: true, maxLength: 20 })} placeholder="FIRSTNAME"/>
             {errors.firstname?.type === 'required' && "First name is required"}
 
-            <input {...register("lastname", { required: true, maxLength: 20 })} placeholder="Enter your last name..."/><br/>
+            <input {...register("lastname", { required: true, maxLength: 20 })} placeholder="LASTNAME"/>
             {errors.lastname?.type === 'required' && "last name is required"}
 
-            <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/ })} placeholder="Enter your email address..."/>
+            <input {...register("email", { required: true, pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/ })} placeholder="EMAIL"/>
             {errors.email?.type === 'required' && "email is required"}
             {errors.email?.type === 'pattern' && "not valid email address"}
-            
-            <input {...register("company", { required: true, })} placeholder="Enter your company name..."/>
-            {errors.company?.type === 'required' && "company is required"}
 
-            <input {...register("password", { required: true, minLength: 8 })} placeholder="Enter your password..."/>
+            <input {...register("password", { required: true, minLength: 8 })} placeholder="PASSWORD" />
             {errors.password?.type === 'required' && "password is required"}
             {errors.password?.type === 'minLength' && "password should be atleadt 8 character long"}
 
-            <input {...register("confirmPassword", { required: true, })} placeholder="Enter your confirm password..."/><br/>
+            <input {...register("confirmPassword", { required: true, })}  placeholder="CONFIRM PASSWORD"/>
             {errors.confirmPassword?.type === 'required' && "password is required"}
 
 
-            <input {...register("address", { required: true, minLength: 15 })} placeholder="Enter your address..."/>
-            {errors.address?.type === 'required' && "address is required"}<br/>
-            {errors.address?.type === 'minLenth' && "address should be greater than 15 character"}
+            <input {...register("company", { required: true, })} placeholder="COMPANY" />
+            {errors.company?.type === 'required' && "company is required"}
 
-            <select {...register("gender", { required: true, })} placeholder="Enter your gender...">
-              <option value="" disabled>Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+            <select {...register("gender", { required: true, })}  >
+
+              <option value="male">male</option>
+              <option value="female">female</option>
             </select>
             {errors.gender?.type === 'required' && "please provide gender"}
 
-            <input type='date' className='date' required onChange={setdate} />
+            <input {...register("address", { required: true, minLength: 15 })} placeholder="ADDRESS"/>
+            {errors.address?.type === 'required' && "address is required"}
+            {errors.address?.type === 'minLenth' && "address should be greater than 15 character"}
+
+              <div>
+            <label htmlFor="dob">BIRTH</label>
+            <input type='date' required onChange={setdate} name="dob" />
+
+              </div>
 
 
-            <button type='submit' className='sign'>Sign Up</button>
+            <button type='submit' className='button'>SIGNUP</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

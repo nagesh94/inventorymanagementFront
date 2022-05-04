@@ -17,6 +17,7 @@ import Sell from './pages/sell/Sell';
 import Setting from './pages/setting/Setting';
 import CheckOut from './pages/checkOut/CheckOut';
 import Unauthorized from './pages/unauthorized/Unauthorized';
+import ResetPass from './pages/resetpassword/ResetPass';
 
 function App() {
   const location = useLocation()
@@ -37,6 +38,7 @@ function App() {
           <Route path='/sell' element={<Sell/>}/>
           <Route path='/checkout' element={<CheckOut/>}/>
         <Route path='/setting' element={<Setting/>}/>
+        <Route path='/resetpass' element={<ResetPass/>}/>
         <Route  element={<Unauthorized/>}/>
         </Routes>
      

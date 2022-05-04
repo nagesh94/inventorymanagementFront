@@ -46,7 +46,7 @@ const Suppliers = () => {
 
   const [count,setCount]=useState(0)
   const val = useSelector((state) => state.supplier.data)
-  console.log(val)
+  const [error,setError]=useState('')
   const dispatch=useDispatch()
  
   
@@ -98,17 +98,19 @@ const Suppliers = () => {
       setCount(count+1)
       setModal(false)
     } catch (err) {
-      console.log(err.response)
+      setError(err.response.data.message)
     }
   }
   //updateSupplier
 const update=(udata)=>{
-  setUdt({...udt,udata})
+  setUdt({...udata})
   setModalUpdate(!modalUpdate)
 }
+console.log(udt)
 
 const updateSupplier=async (id) => {
   try {
+    console.log(id)
     const url = `http://localhost:8000/api/v1/suppliers/${id}/`
     const token = localStorage.getItem('token')
     console.log(token)
@@ -122,7 +124,7 @@ const updateSupplier=async (id) => {
     setCount(count+1)
     setModalUpdate(false)
   } catch (err) {
-    console.log(err.response)
+    setError(err.response.data.message)
   }
 }
 
@@ -145,7 +147,7 @@ const updateSupplier=async (id) => {
       setCount(count+1)
       
     } catch (err) {
-      console.log(err.response)
+      setError(err.response.data.message)
     }
   }
 
@@ -165,8 +167,9 @@ const updateSupplier=async (id) => {
           <div className="supplier_heading">
             <p>Suppliers Forum</p>
           </div>
+          {error && <p style={{color:"red"}}>{error}</p>}
           <div className='supplier_add'>
-            <button className='button' onClick={() => setModal(true)}>Add Supplier</button>
+            <button className='button' onClick={() => setModal(true)}>Add</button>
           </div>
 
           {
@@ -177,17 +180,17 @@ const updateSupplier=async (id) => {
               <input type="text" placeholder='Address' name='address' onChange={changeHandler} />
               <input type="text" placeholder='Company' name='company' onChange={changeHandler} />
               <br/>
-              <button className='button_add' onClick={addSupplier} >Add</button>
+              <button className='button' onClick={addSupplier} >Add</button>
             </div>
           }
           {
             modalUpdate &&
             <div className='update'>
-              <input type="text" placeholder='Name' name='name' onChange={changeHandler} value={udt.name}/>
-              <input type="number" placeholder='Phone' name='phone' onChange={changeHandler} value={udt.phone} /><br/>
-              <input type="text" placeholder='Address' name='address' onChange={changeHandler} value={udt.address} />
-              <input type="text" placeholder='Company' name='company' onChange={changeHandler} />
-              <button className='button_update' onClick={()=>updateSupplier(udt._id)} >Update</button>
+              <input type="text" placeholder='Name' name='name' onChange={changeHandler} defaultValue={udt.name}/>
+              <input type="number" placeholder='Phone' name='phone' onChange={changeHandler} defaultValue={udt.phone} /><br/>
+              <input type="text" placeholder='Address' name='address' onChange={changeHandler} defaultValue={udt.address} />
+              <input type="text" placeholder='Company' name='company' onChange={changeHandler} defaultValue={udt.company} />
+              <button className='button' onClick={()=>updateSupplier(udt._id)} >Update</button>
             </div>
           }
           <div className='supplier_table'>
